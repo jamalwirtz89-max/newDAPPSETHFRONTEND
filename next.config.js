@@ -1,9 +1,6 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-
-  // ── Polyfills requis par @walletconnect/ethereum-provider ──
-  // WalletConnect utilise des modules Node.js (fs, net, tls) qui
-  // n'existent pas dans le navigateur. On les désactive proprement.
+  basePath: '/472026',
+  
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -17,7 +14,6 @@ const nextConfig = {
     return config;
   },
 
-  // ── Proxy /api/* → backend Express en développement local ──
   async rewrites() {
     if (process.env.NODE_ENV !== "development") return [];
     return [
